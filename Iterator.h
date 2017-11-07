@@ -4,14 +4,14 @@
 
 class Iterator {
 public:
-    void operator++();
-    int & operator* () const;
+    Iterator(Link * link) : link(link) {}
+	void operator++();
+    int & operator* ();
     bool operator==(const Iterator & rhs); //rhs=right handside.
 
 
 private:
-    Iterator(Link * link) : link(link){}
     Link * link;
-    friend class list;
-    friend class link;
+    
+    friend class List;
 };
