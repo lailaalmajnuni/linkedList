@@ -13,7 +13,7 @@ public:
     void pop_front ();
     Iterator begin();
     Iterator end();
-    void insert (int value, Iterator it); 
+    void insert (Iterator it, int value); 
     void erase ( Iterator it);
 private:
     Link * head;
