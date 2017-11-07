@@ -98,3 +98,11 @@ void List::insert (Iterator it, int value){
 	}
 	prev->next = new Link(value, it.link);		
 } 
+
+void List::erase(Iterator it){
+	assert(it.link != nullptr);
+	size();
+	for (int i=0; i < countLink; ++i){
+		delete it.link;
+	}
+}
