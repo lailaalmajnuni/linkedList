@@ -1,18 +1,17 @@
 #include "Iterator.h"
-
-Iterator::~Iterator() {
-    //hjhkhn
-}
+#include <cassert>
+#include <iostream>
 
 bool Iterator::operator==(const Iterator & rhs){
     return link == rhs.link;
 }
-//right
-int & Iterator::operator* () const {
-    return link ->value;
+
+int & Iterator::operator* () {
+    assert(link != nullptr);
+    return link->value;
 }
-// right
+
 void Iterator::operator++(){
-    link = link ->next;
+    assert(link != nullptr);
+    link = link->next;
 }
-// right
