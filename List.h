@@ -1,11 +1,10 @@
 #pragma once
-#include "Link.h"
 #include "Iterator.h"
 
 class List{
 public:
     List();
-    ~List ();
+    ~List() {}
     bool empty()const;
     int size () const;
     void push_back(int x);
@@ -14,9 +13,9 @@ public:
     void pop_front ();
     Iterator begin();
     Iterator end();
-    void insert (int value); 
-    void earse ( Iterator it);
+    void insert (int value, Iterator it); 
+    void erase ( Iterator it);
 private:
     Link * head;
-    Link * tail;
+    friend class Iterator;
 };
