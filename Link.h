@@ -1,15 +1,15 @@
 #pragma once
 
-class Link {
+class Link{
 public:
-  Link(int n           ){
-    int data;
-      next=nullptr;
-    }
+    Link(int value, Link * next = nullptr, Link * prev = nullptr) 
+    : value(value), next(next){} 
 
 private:
     Link * next;
-    int data;
+    Link * prev;
+	int value;
+	
     friend class Iterator;
     friend class List;
 };
