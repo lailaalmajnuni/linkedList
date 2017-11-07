@@ -102,7 +102,7 @@ void popBack3(){
 	assert(*it == 8);
 	++it;
 	assert(it == l.end());
-	Iterator it = l.begin();
+	it = l.begin();
 	assert(*it == 2);
 	l.pop_back();
 	++it;
@@ -111,7 +111,7 @@ void popBack3(){
 	assert(*it == 6);
 	++it;
 	assert(it == l.end());
-	Iterator it = l.begin();
+	it = l.begin();
 	assert(*it == 2);
 	l.pop_back();
 	++it;
@@ -130,6 +130,7 @@ void popFront1(){
 	Iterator it = l.begin();
 	assert(*it == 2);
 	l.pop_front();
+	it = l.begin();
 	assert(*it == 4);
 	++it;
 	assert(*it == 6);
@@ -149,6 +150,7 @@ void popFront3(){
 	Iterator it = l.begin();
 	assert(*it == 2);
 	l.pop_front();
+	it = l.begin();
 	assert(*it == 4);
 	++it;
 	assert(*it == 6);
@@ -158,10 +160,10 @@ void popFront3(){
 	assert(*it == 10);
 	++it;
 	assert(it == l.end());
-	Iterator it = l.begin();
+	it = l.begin();
 	assert(*it == 4);
 	l.pop_front();
-	++it;
+	it = l.begin();
 	assert(*it == 6);
 	++it;
 	assert(*it == 8);
@@ -169,10 +171,10 @@ void popFront3(){
 	assert(*it == 10);
 	++it;
 	assert(it == l.end());
-	Iterator it = l.begin();
+	it = l.begin();
 	assert(*it == 6);
 	l.pop_front();
-	++it;
+	it = l.begin();
 	assert(*it == 8);
 	++it;
 	assert(*it == 10);
@@ -190,8 +192,8 @@ void insertTest(){
 	Iterator it = l.begin();
 	++it;
 	assert(*it == 6);
-	l.insertTest(it, 4);
-	Iterator it = l.begin();
+	l.insert(it, 4);
+	it = l.begin();
 	assert(*it == 2);
 	++it;
 	assert(*it == 4);
@@ -199,8 +201,8 @@ void insertTest(){
 	assert(*it == 6);
 	++it;
 	assert(*it == 10);
-	l.insertTest(it, 8);
-	Iterator it = l.begin();
+	l.insert(it, 8);
+	it = l.begin();
 	assert(*it == 2);
 	++it;
 	assert(*it == 4);
@@ -214,21 +216,6 @@ void insertTest(){
 	assert(it == l.end());
 }
 
-void eraseTest(){
-	List l;
-	l.push_back(2);
-	l.push_back(4);
-	l.push_back(6);
-	l.push_back(8);
-	l.push_back(10);
-	assert(l.empty()==false);
-	assert(l.size()==5);
-	Iterator it = l.begin();
-	l.erase(it);
-	assert(l.empty()==true);
-	
-}
-
 int main(){
 	emptyTest();
 	pushBack1();
@@ -239,7 +226,7 @@ int main(){
 	popFront1();
 	popFront3();
 	insertTest();
-	eraseTest();
+	
 	std::cout << "your test passed" << std::endl;
 
 }
