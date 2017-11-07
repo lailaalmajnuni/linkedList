@@ -85,7 +85,7 @@ Iterator List::end(){
     return Iterator(nullptr);
 }
 
-void List::insert (int value, Iterator it){
+void List::insert (Iterator it, int value){
 	assert(it.link != nullptr);
 	if (it.link == head){
 		head = new Link(value, head); //return;
@@ -98,11 +98,3 @@ void List::insert (int value, Iterator it){
 	}
 	prev->next = new Link(value, it.link);		
 } 
-
-void List::erase(Iterator it){
-	assert(it.link != nullptr);
-	for (int i=0; i < countLink; ++i){
-		delete it.link;
-	}
-	assert(l.empty()==true);
-}
