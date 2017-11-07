@@ -241,6 +241,7 @@ int main(){
 	popFront1();
 	popFront3();
 	insertTest();
+	eraseTest();
 	
 	std::cout << "your test passed" << std::endl;
 
