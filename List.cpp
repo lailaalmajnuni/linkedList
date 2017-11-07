@@ -5,84 +5,104 @@
 
 using namespace std;
 
-List::List():head(nullptr), tail(nullptr){}
-
-List::~List(){
-
-}
+List::List():head(nullptr) {}
 
 bool List::empty() const{
-    	return head == nullptr;
+	return head == nullptr;
 }
 
-int List::size () const{
-    	int countLink = 0;
-   	Link * temp =  head;
-    	while(temp !=nullptr){
-        	++countLink;
-       		temp = temp ->next;
+int List::size () const {
+	Link * link =  head;
+	int countLink = 0;
+    while(link != nullptr) {
+        ++countLink;
+       	link = link->next;
     	}
    	return countLink;
 }	
 
-void List::push_back(int x){
-    	Link* temp = new Link(nullptr, x);
-    	if (head = nullptr){
-       		head = new_link;
-    	}
-    	else {
-        	int * temp = head;
-        	while ( temp-> next != nullptr){
-            		temp = temp-> next;
-        }
-        temp->next = new_link;
+void List::push_back(int x) {
+	if (head == nullptr) {
+		head = new Link(x);
+	} else {
+		Link * link = head;
+		while (link->next != nullptr) {
+			link = link->next;
+		} 
+		link->next = new Link(x);
+	}
 }
 
-void List::push_front(const int & x){
-    	Link* temp = new link(nullptr, x);
-	temp->next = nullptr;
-	if(head == nullptr) {
-		head = temp;
-	}
-	else {
-		temp->next=head;
-		head = temp;
-	}
-    
+void List::push_front(int x) {
+    Link * link = new Link(x);
+    link->next = 0;
+    if(head == 0)
+    {
+        head = link;
+    }
+    else
+    {
+        link->next = head;
+        head = link;
+    }
 }
 
 void List::pop_back (){
-    	assert(head !=nullptr);
-    	if (head->next == nullptr){
-        //special case; only one link
-        	head = nullptr
-        	return;
-    	}
-
-    	Link * temp = head;
-    	while(temp->next->next !=nullptr) {
-        	temp = temp ->next;
-    	}
-    	delete temp->next;
-    	temp->next = nullptr
-}
-// right
-Iterator List::begin(){
-    	return Iterator(head);
-}
-// right
-Iterator List::end(){
-    	return Iterator(nullptr);
-}
-// right
-
-
-void List::insert (int value){
-    	if (link == nullptr) {
-        	link = new Link(nullptr, value);
-	}
+    assert(head !=nullptr);
+    if (head->next == nullptr){
+    //special case; only one link
+        head = nullptr;
         return;
-} 
-Iterator List::erase(Iterator it){
+    }
+    Link * temp = head;
+    while(temp->next->next !=nullptr) {
+       	temp = temp ->next;
+    }
+    delete temp->next;
+    temp->next = nullptr;
+}
 
+void List::pop_front (){
+	assert(head != nullptr);
+    Link * link = head;
+    if(head->next == nullptr)
+    {
+        head = nullptr;
+        delete link;
+    }
+    else
+    {
+        head = link->next;
+        delete link;
+    }
+}
+
+Iterator List::begin(){
+    return Iterator(head);
+}
+
+Iterator List::end(){
+    return Iterator(nullptr);
+}
+
+void List::insert (int value, Iterator it){
+	assert(it.link != nullptr);
+	if (it.link == head){
+		head = new Link(value, head); //return;
+		//push_front(value);
+		return;
+	}
+	Link * prev = head;
+	while (prev->next != it.link) {
+		prev = prev->next;
+	}
+	prev->next = new Link(value, it.link);		
+} 
+
+void List::erase(Iterator it){
+	assert(it.link != nullptr);
+	for (int i=0; i < countLink; ++i){
+		delete it.link;
+	}
+	assert(l.empty()==true);
 }
