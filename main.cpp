@@ -216,6 +216,21 @@ void insertTest(){
 	assert(it == l.end());
 }
 
+void eraseTest(){
+	List l;
+	l.push_back(2);
+	l.push_back(4);
+	l.push_back(6);
+	l.push_back(8);
+	l.push_back(10);
+	assert(l.empty()==false);
+	assert(l.size()==5);
+	Iterator it = l.begin();
+	l.erase(it);
+	assert(l.empty()==true);
+	
+}
+
 int main(){
 	emptyTest();
 	pushBack1();
