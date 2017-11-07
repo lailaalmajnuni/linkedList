@@ -1,91 +1,245 @@
-#include <iostream>
+#include "List.h"
+#include "Iterator.h"
 #include <cassert>
-#include “List.h”
+#include <iostream>
 
-Using namespace std;
 
-void test0(){
-    	List list;
-    	assert(list.empty()==true);
-    	assert(list.size()==0);
-    	Iterator it = list.begin();
-    	Iterator end = list.end();
-    	assert(it == end);
-    	//or assert(it.operator==(end)); two lines are identical.
+
+void emptyTest() {
+	List l;
+	assert(l.empty()==true);
+	assert(l.size()==0);
+	Iterator it = l.begin();
+	Iterator end = l.end();
+	assert(it == end);
+	assert(it.operator==(end));
+	//or assert(it.operator==(end)); two lines are identical.
 }
 
-void pushback1(){
-    	List list;
-    	list.push_back(17);
-    	assert(list.empty()==false);
-    	assert(list.size()==1);
-    	Iterator it = list.begin();
-    	assert(*it == 17);
-    	*it = 4;
-    	assert(*it ==4);
-    	++it;
-    	assert(it == list.end)
-    	list.pop_back();
-    	assert(list.size()==0);
-    	it = list.begin();
-    	assert(it == list.end)
+void pushBack1() {
+	List l;
+	l.push_back(2);
+	assert(l.empty()==false);
+	assert(l.size()==1);
+	Iterator it = l.begin();
+	assert(*it == 2);
+	*it = 4;
+	assert(*it ==4);
+	++it;
+	assert(it == l.end());
 }
 
-void pushfront1(){
-    	List list;
-    	list.push_front(17);
-    	assert(list.empty()==false);
-    	assert(list.size()==1);
-    	Iterator it = list.begin();
-    	assert(*it == 17);
-    	*it = 4;
-    	assert(*it ==4);
-    	++it;
-    	assert(it == list.end)
+void pushBack3(){
+	List l;
+	l.push_back(2);
+	assert(l.size()==1);
+	l.push_back(4);
+	assert(l.size()==2);
+	l.push_back(6);
+	assert(l.empty()==false);
+	assert(l.size()==3);
+	Iterator it = l.begin();
+	assert(*it == 2);
+	++it;
+	assert(*it == 4);
+	++it;
+	assert(*it == 6);
+	++it;
+	assert(it == l.end());
 }
 
-void pushback3(){
-    	List list;
-    	list.push_back(3);
-    	list.push_back(2);
-    	list.push_back(6);
-    	assert(list.size()==3);
-    	iterator it = list.begin();
-    	assert(*it ==3);
-    	++it;
-    	assert(*it ==2);
-    	++it;
-    	assert(*it ==6);
-    	++it;
-    	assert(it == list.end)
+void pushFront3(){
+	List l;
+	l.push_front(2);
+	assert(l.size()==1);
+	l.push_front(4);
+	assert(l.size()==2);
+	l.push_front(6);
+	assert(l.empty()==false);
+	assert(l.size()==3);
+	Iterator it = l.begin();
+	assert(*it == 6);
+	++it;
+	assert(*it == 4);
+	++it;
+	assert(*it == 2);
+	++it;
+	assert(it == l.end());
 }
 
-void pushfront3(){
-    	List list;
-    	list.push_front(3);
-    	list.push_front(2);
-    	list.push_front(6);
-    	assert(list.size()==3);
-    	iterator it = list.begin();
-    	assert(*it ==6);
-    	++it;
-    	assert(*it ==2);
-    	++it;
-    	assert(*it ==3);
-    	++it;
-    	assert(it == list.end())
-    	list.pop_back();
-    	assert(list.size()==2);
+void popBack1(){
+	List l;
+	l.push_back(2);
+	assert(l.empty()==false);
+	assert(l.size()==1);
+	l.pop_back();
+	assert(l.empty()==true);
+	assert(l.size()==0);
+	Iterator it = l.begin();
+	Iterator end = l.end();
+	assert(it == end);
+	assert(it.operator==(end));
 }
 
-int main() {
-	test0();
-/*
-	pushback1();
-	pushfront1();
-	pushback3();
-	pushfront3()
-*/	
-    	cout<< "all test passed" <<endl;
-    	return 0;
+void popBack3(){
+	List l;
+	l.push_back(2);
+	l.push_back(4);
+	l.push_back(6);
+	l.push_back(8);
+	l.push_back(10);
+	assert(l.empty()==false);
+	assert(l.size()==5);
+	Iterator it = l.begin();
+	assert(*it == 2);
+	l.pop_back();
+	assert(*it == 2);
+	++it;
+	assert(*it == 4);
+	++it;
+	assert(*it == 6);
+	++it;
+	assert(*it == 8);
+	++it;
+	assert(it == l.end());
+	Iterator it = l.begin();
+	assert(*it == 2);
+	l.pop_back();
+	++it;
+	assert(*it == 4);
+	++it;
+	assert(*it == 6);
+	++it;
+	assert(it == l.end());
+	Iterator it = l.begin();
+	assert(*it == 2);
+	l.pop_back();
+	++it;
+	assert(*it == 4);
+	++it;
+	assert(it == l.end());
+}
+
+void popFront1(){
+	List l;
+	l.push_back(2);
+	l.push_back(4);
+	l.push_back(6);
+	assert(l.empty()==false);
+	assert(l.size()==3);
+	Iterator it = l.begin();
+	assert(*it == 2);
+	l.pop_front();
+	assert(*it == 4);
+	++it;
+	assert(*it == 6);
+	++it;
+	assert(it == l.end());
+}
+
+void popFront3(){
+	List l;
+	l.push_back(2);
+	l.push_back(4);
+	l.push_back(6);
+	l.push_back(8);
+	l.push_back(10);
+	assert(l.empty()==false);
+	assert(l.size()==5);
+	Iterator it = l.begin();
+	assert(*it == 2);
+	l.pop_front();
+	assert(*it == 4);
+	++it;
+	assert(*it == 6);
+	++it;
+	assert(*it == 8);
+	++it;
+	assert(*it == 10);
+	++it;
+	assert(it == l.end());
+	Iterator it = l.begin();
+	assert(*it == 4);
+	l.pop_front();
+	++it;
+	assert(*it == 6);
+	++it;
+	assert(*it == 8);
+	++it;
+	assert(*it == 10);
+	++it;
+	assert(it == l.end());
+	Iterator it = l.begin();
+	assert(*it == 6);
+	l.pop_front();
+	++it;
+	assert(*it == 8);
+	++it;
+	assert(*it == 10);
+	++it;
+	assert(it == l.end());
+}
+
+void insertTest(){
+	List l;
+	l.push_back(2);
+	l.push_back(6);
+	l.push_back(10);
+	assert(l.empty()==false);
+	assert(l.size()==3);
+	Iterator it = l.begin();
+	++it;
+	assert(*it == 6);
+	l.insertTest(it, 4);
+	Iterator it = l.begin();
+	assert(*it == 2);
+	++it;
+	assert(*it == 4);
+	++it;
+	assert(*it == 6);
+	++it;
+	assert(*it == 10);
+	l.insertTest(it, 8);
+	Iterator it = l.begin();
+	assert(*it == 2);
+	++it;
+	assert(*it == 4);
+	++it;
+	assert(*it == 6);
+	++it;
+	assert(*it == 8);
+	++it;
+	assert(*it == 10);
+	++it;
+	assert(it == l.end());
+}
+
+void eraseTest(){
+	List l;
+	l.push_back(2);
+	l.push_back(4);
+	l.push_back(6);
+	l.push_back(8);
+	l.push_back(10);
+	assert(l.empty()==false);
+	assert(l.size()==5);
+	Iterator it = l.begin();
+	l.erase(it);
+	assert(l.empty()==true);
+	
+}
+
+int main(){
+	emptyTest();
+	pushBack1();
+	pushBack3();
+	pushFront3();
+	popBack1();
+	popBack3();
+	popFront1();
+	popFront3();
+	insertTest();
+	eraseTest();
+	std::cout << "your test passed" << std::endl;
+
 }
